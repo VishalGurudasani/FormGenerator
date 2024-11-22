@@ -1,50 +1,114 @@
-# React + TypeScript + Vite
+Form Generator App
+This is a form generator application that allows users to input a JSON schema to dynamically generate forms. It supports dark mode and provides functionality for downloading form submissions as JSON files.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Prerequisites
+Ensure you have the following tools installed:
 
-Currently, two official plugins are available:
+Node.js (v14 or higher)
+npm (or yarn)
+Steps to Setup
+Clone the Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, clone the repository to your local machine:
 
-## Expanding the ESLint configuration
+git clone https://github.com/yourusername/form-generator-app.git
+cd form-generator-app
+Install Dependencies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Dependencies
+Here are the main dependencies used in this project:
 
-- Configure the top-level `parserOptions` property like this:
+React: The library used for building the user interface.
+Tailwind CSS: A utility-first CSS framework used for styling.
+React Hook Form: For handling form state, validation, and submission.
+TypeScript: Ensures type safety throughout the application.
+jsoneditor: A JavaScript library to provide an interactive JSON editor in the app.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+Run the following command to install all required dependencies:
+npm install
+Run the Development Server
+
+To start the application, run the following command:
+npm run dev
+This will start the development server, and you can access the app in your browser at http://localhost:5173 (or any port specified).
+
+
+Initially below json code will be shown:
+{
+  "formTitle": "Project Requirements Survey",
+  "formDescription": "Please fill out this survey about your project needs",
+  "fields": [
+    {
+      "id": "name",
+      "type": "text",
+      "label": "Full Name",
+      "required": true,
+      "placeholder": "Enter your full name"
     },
-  },
-})
-```
+    {
+      "id": "email",
+      "type": "email",
+      "label": "Email Address",
+      "required": true,
+      "placeholder": "you@example.com",
+      "validation": {
+        "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+        "message": "Please enter a valid email address"
+      }
+    },
+    {
+      "id": "companySize",
+      "type": "select",
+      "label": "Company Size",
+      "required": true,
+      "options": [
+        { "value": "1-50", "label": "1-50 employees" },
+        { "value": "51-200", "label": "51-200 employees" },
+        { "value": "201-1000", "label": "201-1000 employees" },
+        { "value": "1000+", "label": "1000+ employees" }
+      ]
+    }
+  ]
+}
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+if you have to change it use diffrent one or take example from below:
+{
+  "formTitle": "User Registration",
+  "formDescription": "Please fill out the registration form to create an account",
+  "fields": [
+    {
+      "id": "username",
+      "type": "text",
+      "label": "Username",
+      "required": true,
+      "placeholder": "Enter your username"
+    },
+    {
+      "id": "password",
+      "type": "password",
+      "label": "Password",
+      "required": true,
+      "placeholder": "Enter your password"
+    },
+    {
+      "id": "confirmPassword",
+      "type": "password",
+      "label": "Confirm Password",
+      "required": true,
+      "placeholder": "Confirm your password"
+    }
+  ]
+}
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Dark Mode
+To toggle dark mode, click the switch at the top-right corner of the app. The form and editor will switch to dark mode or light mode based on your selection.
+
+Handling Form Submission
+When a user submits the form:
+
+The form data will be displayed in the form of an alert.
+The user will also have the option to download the form data as a .json file by clicking the "Download Submission" button.
+
+
+
